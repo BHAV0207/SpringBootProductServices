@@ -17,6 +17,13 @@ public interface ServiceProductInterface {
 
     public List<ModelProduct> getAllProducts();
 
+    public ModelProduct AddNewProduct(ModelProduct newProduct);
+
+    public ModelProduct updateProduct(ModelProduct updatePro ,  int id);
+
+   
+
+
 
 
      

@@ -2,6 +2,8 @@ package productService.example.demo.Services;
 
 import java.util.*;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -52,6 +54,30 @@ public class ServiceProduct implements ServiceProductInterface{
             prod.add(ConvertDtoToModel(resp));
         }
         return prod;
+    }
+
+
+
+    public ModelProduct AddNewProduct(ModelProduct newProduct){
+        FakeStoreDTOProduct newFakeProduct = new FakeStoreDTOProduct();
+        newFakeProduct.setTitle(newProduct.getTitle());
+        newFakeProduct.setPrice(newProduct.getPrice());
+        newFakeProduct.setDescription(newProduct.getDescription());
+        newFakeProduct.setImage(newProduct.getImage());
+        newFakeProduct.setCategory(newProduct.getCategory().getTitle());
+        FakeStoreDTOProduct response = restTemplate.postForObject(url + "/products", newFakeProduct, FakeStoreDTOProduct.class);
+        return ConvertDtoToModel(response);
+    }
+
+    public ModelProduct updateProduct(ModelProduct updatePro ,  int id){
+        FakeStoreDTOProduct newFakePro = new FakeStoreDTOProduct();
+        newFakePro.setTitle(updatePro.getTitle());
+        newFakePro.setPrice(updatePro.getPrice());
+        newFakePro.setDescription(updatePro.getDescription());
+        newFakePro.setImage(updatePro.getImage());
+        newFakePro.setCategory(updatePro.getCategory().getTitle());
+        FakeStoreDTOProduct response = restTemplate.exchange(url+"/products/" +id, HttpMethod.PUT, new HttpEntity<FakeStoreDTOProduct>(newFakePro), FakeStoreDTOProduct.class);
+        return ConvertDtoToModel(response);
     }
      
 }
