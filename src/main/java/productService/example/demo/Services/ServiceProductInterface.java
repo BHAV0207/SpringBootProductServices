@@ -1,13 +1,23 @@
 package productService.example.demo.Services;
 
-import productService.example.demo.DTO.DTOProduct;
+import java.util.List;
 
+import productService.example.demo.DTO.FakeStoreDTOProduct;
+//import productService.example.demo.DTO.FakeStoreDTOProduct;
+import productService.example.demo.Models.ModelProduct;
+
+/**
+ * ServiceProductInterface
+ */
 public interface ServiceProductInterface {
-    public DTOProduct getProductById(int id);
 
-    public DTOProduct[] getAllProduct();
+    public ModelProduct ConvertDtoToModel(FakeStoreDTOProduct response);
 
-    public DTOProduct[] getProductByCategories();
+    public ModelProduct getProductById(int id);
+
+    public List<ModelProduct> getAllProducts();
 
 
+
+     
 }
