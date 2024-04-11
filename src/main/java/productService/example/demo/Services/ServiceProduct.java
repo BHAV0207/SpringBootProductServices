@@ -41,6 +41,8 @@ public class ServiceProduct implements ServiceProductInterface{
 
 
     public ModelProduct getProductById(int id) {
+        // using this would give arthematic error exception
+        // int x = 1/0;
         FakeStoreDTOProduct response = restTemplate.getForObject(url +"/products/"+ id, FakeStoreDTOProduct.class);
         return ConvertDtoToModel(response);
     }
@@ -66,17 +68,6 @@ public class ServiceProduct implements ServiceProductInterface{
         newFakeProduct.setImage(newProduct.getImage());
         newFakeProduct.setCategory(newProduct.getCategory().getTitle());
         FakeStoreDTOProduct response = restTemplate.postForObject(url + "/products", newFakeProduct, FakeStoreDTOProduct.class);
-        return ConvertDtoToModel(response);
-    }
-
-    public ModelProduct updateProduct(ModelProduct updatePro ,  int id){
-        FakeStoreDTOProduct newFakePro = new FakeStoreDTOProduct();
-        newFakePro.setTitle(updatePro.getTitle());
-        newFakePro.setPrice(updatePro.getPrice());
-        newFakePro.setDescription(updatePro.getDescription());
-        newFakePro.setImage(updatePro.getImage());
-        newFakePro.setCategory(updatePro.getCategory().getTitle());
-        FakeStoreDTOProduct response = restTemplate.exchange(url+"/products/" +id, HttpMethod.PUT, new HttpEntity<FakeStoreDTOProduct>(newFakePro), FakeStoreDTOProduct.class);
         return ConvertDtoToModel(response);
     }
      

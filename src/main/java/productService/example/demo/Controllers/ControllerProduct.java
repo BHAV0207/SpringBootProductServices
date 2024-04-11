@@ -34,26 +34,26 @@ public class ControllerProduct {
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity getProductById(@PathVariable int id){
+    public ModelProduct getProductById(@PathVariable int id){
 
-        ResponseEntity<ModelProduct> respEntity = null;
-        ModelProduct product = null;
+        // ResponseEntity<ModelProduct> respEntity = null;
+        // ModelProduct product = null;
 
-        try{
-            product = ServiceProduct.getProductById(id);
-            respEntity = new ResponseEntity<>(product , HttpStatus.OK);
-            return respEntity;
-        }
-        catch(RuntimeException exception){
-            ExceptionDto dto = new ExceptionDto();
-            dto.setMessage("something went wrong");
-            ResponseEntity<ExceptionDto> response = new ResponseEntity<>(dto , HttpStatus.NOT_FOUND);
+        // try{
+        //     product = ServiceProduct.getProductById(id);
+        //     respEntity = new ResponseEntity<>(product , HttpStatus.OK);
+        //     return respEntity;
+        // }
+        // catch(RuntimeException exception){
+        //     ExceptionDto dto = new ExceptionDto();
+        //     dto.setMessage("something went wrong");
+        //     ResponseEntity<ExceptionDto> response = new ResponseEntity<>(dto , HttpStatus.NOT_FOUND);
 
-            return response;
+        //     return response;
 
-        }
+        // }
 
-        //return sc.getProductById(id);
+        return sc.getProductById(id);
     }
 
     @GetMapping("/products")
@@ -66,11 +66,7 @@ public class ControllerProduct {
         return sc.AddNewProduct(newProduct);
     }
 
-    @PutMapping("products/{id}")
-    public ModelProduct updateProduct(@RequestBody ModelProduct updatePro , @PathVariable int id) {
-        return sc.updateProduct(updatePro, id);
-    }
-    
+   
     
     
     

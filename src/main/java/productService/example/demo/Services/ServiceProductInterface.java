@@ -19,8 +19,6 @@ public interface ServiceProductInterface {
 
     public ModelProduct AddNewProduct(ModelProduct newProduct);
 
-    public ModelProduct updateProduct(ModelProduct updatePro ,  int id);
-
    
 
 
