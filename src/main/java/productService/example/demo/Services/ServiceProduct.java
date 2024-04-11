@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 //import ch.qos.logback.core.model.Model;
 import productService.example.demo.DTO.FakeStoreDTOProduct;
+import productService.example.demo.Exception.productNotFound;
 import productService.example.demo.Models.ModelCategory;
 import productService.example.demo.Models.ModelProduct;
 
@@ -44,6 +45,10 @@ public class ServiceProduct implements ServiceProductInterface{
         // using this would give arthematic error exception
         // int x = 1/0;
         FakeStoreDTOProduct response = restTemplate.getForObject(url +"/products/"+ id, FakeStoreDTOProduct.class);
+
+        if(response == null){
+            throw new productNotFound("please add a valid product id");
+        }
         return ConvertDtoToModel(response);
     }
 

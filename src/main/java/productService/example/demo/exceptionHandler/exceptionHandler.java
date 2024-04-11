@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import productService.example.demo.DTO.ExceptionDto;
+import productService.example.demo.Exception.productNotFound;
 
 @ControllerAdvice
 public class exceptionHandler {
@@ -38,6 +39,18 @@ public class exceptionHandler {
         return response;
 
     }
+
+    @ExceptionHandler(productNotFound.class)
+    public ResponseEntity<ExceptionDto> handleProductNotFoundException() {
+        ExceptionDto dto = new ExceptionDto();
+        dto.setMessage("Invalid Id");
+        dto.setResoluution("Product not found caught");
+        ResponseEntity<ExceptionDto> response= new ResponseEntity<>(dto , HttpStatus.BAD_REQUEST);
+        return response;
+
+    }
+
+    
 
 
 }
