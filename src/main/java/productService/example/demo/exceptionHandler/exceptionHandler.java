@@ -10,6 +10,7 @@ import productService.example.demo.Exception.productNotFound;
 
 @ControllerAdvice
 public class exceptionHandler {
+    
     @ExceptionHandler(ArithmeticException.class)
     public ResponseEntity<ExceptionDto> handleArthematicException() {
         ExceptionDto dto = new ExceptionDto();
